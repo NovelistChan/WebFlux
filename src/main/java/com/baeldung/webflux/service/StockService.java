@@ -30,7 +30,7 @@ public class StockService {
 
 
     public Flux<NewStock> streamStock() {
-        System.setProperty("selenuim_config", "/Webflux/config.ini");
+        System.setProperty("selenuim_config", "/usr/novelistchan/Webflux/config.ini");
         Flux<Long> interval = Flux.interval(Duration.ofSeconds(5));
         FluxProcessor events = DirectProcessor.create().serialize();
         FluxSink sink = events.sink();
@@ -67,7 +67,7 @@ public class StockService {
                         return 0;
                     }
                 }))
-                .setDownloader(new NewSeleniumDownloader("/Webflux/chromedriver")).thread(5).start();
+                .setDownloader(new NewSeleniumDownloader("/usr/novelistchan/Webflux/chromedriver")).thread(5).start();
 
         return events;
     }
